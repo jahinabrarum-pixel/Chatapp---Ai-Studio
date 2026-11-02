@@ -1,0 +1,6 @@
+{
+  "name": "VYRO",
+  "description": "Premium social media and real-time messaging application. Connect beyond limits with 3D glassmorphism, social feed, stories, voice & video calling, and real-time chat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

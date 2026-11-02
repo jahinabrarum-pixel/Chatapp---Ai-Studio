@@ -1,0 +1,206 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account profile information",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "username": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "avatarUrl": { "type": "string" },
+        "bio": { "type": "string" },
+        "dateOfBirth": { "type": "string" },
+        "followersCount": { "type": "integer" },
+        "followingCount": { "type": "integer" },
+        "postsCount": { "type": "integer" },
+        "isPrivate": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "displayName", "username", "createdAt"]
+    },
+    "Post": {
+      "title": "Post",
+      "description": "A social feed post with media and captions",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "username": { "type": "string" },
+        "userAvatarUrl": { "type": "string" },
+        "caption": { "type": "string" },
+        "mediaUrls": { "type": "array" },
+        "mediaType": { "type": "string" },
+        "location": { "type": "string" },
+        "tags": { "type": "array" },
+        "likesCount": { "type": "integer" },
+        "commentsCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "username", "caption", "createdAt"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "User comment on a post",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string" },
+        "userId": { "type": "string" },
+        "username": { "type": "string" },
+        "userAvatarUrl": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["postId", "userId", "username", "content", "createdAt"]
+    },
+    "Like": {
+      "title": "Like",
+      "description": "Post like record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "createdAt"]
+    },
+    "Story": {
+      "title": "Story",
+      "description": "Temporary 24-hour visual story",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "username": { "type": "string" },
+        "userAvatarUrl": { "type": "string" },
+        "mediaUrl": { "type": "string" },
+        "caption": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "username", "mediaUrl", "createdAt"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "One-on-one or group chat room",
+      "type": "object",
+      "properties": {
+        "participantIds": { "type": "array" },
+        "isGroup": { "type": "boolean" },
+        "groupName": { "type": "string" },
+        "groupPhotoUrl": { "type": "string" },
+        "adminIds": { "type": "array" },
+        "lastMessage": { "type": "string" },
+        "lastSenderId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["participantIds", "isGroup", "createdAt"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Individual message within a conversation",
+      "type": "object",
+      "properties": {
+        "conversationId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "senderAvatar": { "type": "string" },
+        "content": { "type": "string" },
+        "type": { "type": "string" },
+        "mediaUrl": { "type": "string" },
+        "voiceDurationSeconds": { "type": "integer" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["conversationId", "senderId", "senderName", "content", "type", "createdAt"]
+    },
+    "Call": {
+      "title": "Call",
+      "description": "Voice or video call session record",
+      "type": "object",
+      "properties": {
+        "callerId": { "type": "string" },
+        "callerName": { "type": "string" },
+        "callerAvatar": { "type": "string" },
+        "receiverId": { "type": "string" },
+        "receiverName": { "type": "string" },
+        "receiverAvatar": { "type": "string" },
+        "callType": { "type": "string" },
+        "status": { "type": "string" },
+        "durationSeconds": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["callerId", "receiverId", "callType", "status", "createdAt"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "In-app user notification",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "fromUserId": { "type": "string" },
+        "fromUsername": { "type": "string" },
+        "fromUserAvatar": { "type": "string" },
+        "type": { "type": "string" },
+        "referenceId": { "type": "string" },
+        "content": { "type": "string" },
+        "isRead": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "fromUserId", "fromUsername", "type", "content", "isRead", "createdAt"]
+    },
+    "Bookmark": {
+      "title": "Bookmark",
+      "description": "Saved post reference for user",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string" },
+        "savedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["postId", "savedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles"
+    },
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Social feed posts"
+    },
+    "/posts/{postId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Comments on posts"
+    },
+    "/posts/{postId}/likes/{userId}": {
+      "schema": "Like",
+      "description": "Likes on posts"
+    },
+    "/stories/{storyId}": {
+      "schema": "Story",
+      "description": "24-hour stories"
+    },
+    "/conversations/{conversationId}": {
+      "schema": "Conversation",
+      "description": "Chat conversations"
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages inside conversations"
+    },
+    "/calls/{callId}": {
+      "schema": "Call",
+      "description": "Voice and video call records"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "User notification inbox"
+    },
+    "/users/{userId}/bookmarks/{postId}": {
+      "schema": "Bookmark",
+      "description": "User saved bookmarks"
+    }
+  }
+}
